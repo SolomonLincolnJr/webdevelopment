@@ -26,12 +26,25 @@ app.get('/', (req, res) => {
         </label>
       </div>
       
+      <div class="toggle">
+        <label>
+          <input type="checkbox" id="txfToggle" onchange="toggleTXF()"> 
+          TXF Pattern: <span id="txfStatus">OFF</span>
+        </label>
+      </div>
+
       <p><a href="/health">Health Check</a></p>
       
       <script>
         function toggleHD() {
           const checkbox = document.getElementById('hdToggle');
           const status = document.getElementById('hdStatus');
+          status.textContent = checkbox.checked ? 'ON' : 'OFF';
+        }
+        
+        function toggleTXF() {
+          const checkbox = document.getElementById('txfToggle');
+          const status = document.getElementById('txfStatus');
           status.textContent = checkbox.checked ? 'ON' : 'OFF';
         }
       </script>
