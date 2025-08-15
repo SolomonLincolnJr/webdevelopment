@@ -1,18 +1,3 @@
-## PSYBERHERD™ CODE REVIEW: Critical Issues Detected! 🎖️
-
-**GREAT PROGRESS, GENERAL!** I can see you've added the market ticker, but there are several **duplicate elements** that need cleaning up for proper deployment.
-
-### **ISSUES TO FIX** ⚠️
-
-**1. Duplicate HD Analysis sections**
-**2. Duplicate Health Check links** 
-**3. Broken JavaScript structure**
-
-### **CLEANED & CORRECTED VERSION** ✨
-
-**Here's your complete, properly formatted file:**
-
-```javascript
 const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -119,14 +104,14 @@ app.get('/', (req, res) => {
       <div class="toggle">
         <label>
           <input type="checkbox" id="hdToggle" onchange="toggleHD()"> 
-          HD Pattern: <span id="hdStatus">OFF</span>
+          HD Pattern: <span id="hdStatus" class="status-off">OFF</span>
         </label>
       </div>
       
       <div class="toggle">
         <label>
           <input type="checkbox" id="txfToggle" onchange="toggleTXF()"> 
-          TXF Pattern: <span id="txfStatus">OFF</span>
+          TXF Pattern: <span id="txfStatus" class="status-off">OFF</span>
         </label>
       </div>
       
@@ -143,7 +128,7 @@ app.get('/', (req, res) => {
         </div>
       </div>
 
-      <p><a href="/health">Health Check</a></p>
+      <p><a href="/health" style="color: #1AC8ED;">Health Check</a></p>
       
       <script>
         function toggleHD() {
@@ -167,13 +152,15 @@ app.get('/', (req, res) => {
         function updateMarketTicker() {
           const ticker = document.getElementById('marketTicker');
           const basePrice = 75;
-          const price = (basePrice + (Math.random() - 0.5) * 10).toFixed(2);
+          const price = (basePrice + (Math.random() - 0.5) * 2).toFixed(2); // Reduced volatility for realism
           const volume = Math.floor(150000 + Math.random() * 100000).toLocaleString();
           const trends = ['↗️ Bullish', '↘️ Bearish', '➡️ Sideways'];
           const trend = trends[Math.floor(Math.random() * trends.length)];
           const time = new Date().toLocaleTimeString();
           
-          ticker.innerHTML = \`Crude Oil: $\${price} | Volume: \${volume} | Trend: \${trend} | Last Update: \${time}\`;
+          // --- FIX APPLIED HERE ---
+          // Using standard string concatenation to avoid nested template literal conflict.
+          ticker.innerHTML = 'Crude Oil: $' + price + ' | Volume: ' + volume + ' | Trend: ' + trend + ' | Last Update: ' + time;
         }
 
         // Start the ticker immediately and update every 5 seconds
@@ -196,5 +183,3 @@ app.get('/health', (req, res) => {
 app.listen(PORT, '0.0.0.0', () => {
   console.log('🚀 PSYBERHERD V3.1 operational on port', PORT);
 });
-```
-
