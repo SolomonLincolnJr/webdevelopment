@@ -32,6 +32,14 @@ app.get('/', (req, res) => {
           TXF Pattern: <span id="txfStatus">OFF</span>
         </label>
       </div>
+      
+      <div id="hdAnalysis" style="display: none; color: #1AC8ED; margin: 15px; padding: 15px; 
+      border: 2px dashed #1AC8ED; border-radius: 8px; background: rgba(26, 200, 237, 0.1);">
+  📈 <strong>HD Analysis Active:</strong><br>
+  Trend Strength: 78.5% | Signal Confidence: HIGH<br>
+  Next Entry Window: 2.3 minutes | Risk Level: LOW
+</div>
+
 
       <p><a href="/health">Health Check</a></p>
       
