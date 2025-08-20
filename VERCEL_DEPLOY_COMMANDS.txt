@@ -1,0 +1,83 @@
+════════════════════════════════════════════════════════════════════
+    PSYBERHERD™ APEX SNIPER - VERCEL DEPLOYMENT COMMANDS
+    Team ID: team_aBXmBAsOax74OQZNoVKLMWLU
+════════════════════════════════════════════════════════════════════
+
+COPY AND PASTE THESE COMMANDS ON YOUR LOCAL MACHINE:
+
+────────────────────────────────────────────────────────────────────
+STEP 1: CLONE & NAVIGATE
+────────────────────────────────────────────────────────────────────
+
+git clone https://github.com/SolomonLincolnJr/webdevelopment.git
+cd webdevelopment/vercel-frontend
+
+────────────────────────────────────────────────────────────────────
+STEP 2: INSTALL DEPENDENCIES
+────────────────────────────────────────────────────────────────────
+
+npm install
+
+────────────────────────────────────────────────────────────────────
+STEP 3: CREATE ENVIRONMENT FILE
+────────────────────────────────────────────────────────────────────
+
+echo "NEXT_PUBLIC_API_URL=https://webdevelopment-production-023f.up.railway.app
+NEXT_PUBLIC_WS_URL=wss://webdevelopment-production-023f.up.railway.app
+NEXT_PUBLIC_ENVIRONMENT=production
+NEXT_PUBLIC_TEAM_ID=team_aBXmBAsOax74OQZNoVKLMWLU
+NEXT_PUBLIC_ENABLE_CL_TRADING=true
+NEXT_PUBLIC_ENABLE_QUANTUM_PROCESSING=true
+NEXT_PUBLIC_ENABLE_AI_CONSENSUS=true" > .env.local
+
+────────────────────────────────────────────────────────────────────
+STEP 4: DEPLOY TO VERCEL
+────────────────────────────────────────────────────────────────────
+
+npx vercel --prod --scope=team_aBXmBAsOax74OQZNoVKLMWLU
+
+────────────────────────────────────────────────────────────────────
+ALTERNATIVE: ONE-LINE DEPLOYMENT
+────────────────────────────────────────────────────────────────────
+
+npx vercel --prod --scope=team_aBXmBAsOax74OQZNoVKLMWLU --yes \
+  --env NEXT_PUBLIC_API_URL=https://webdevelopment-production-023f.up.railway.app \
+  --env NEXT_PUBLIC_WS_URL=wss://webdevelopment-production-023f.up.railway.app \
+  --env NEXT_PUBLIC_ENVIRONMENT=production \
+  --env NEXT_PUBLIC_TEAM_ID=team_aBXmBAsOax74OQZNoVKLMWLU \
+  --env NEXT_PUBLIC_ENABLE_CL_TRADING=true
+
+────────────────────────────────────────────────────────────────────
+VERCEL DASHBOARD IMPORT
+────────────────────────────────────────────────────────────────────
+
+URL: https://vercel.com/import/git?s=https://github.com/SolomonLincolnJr/webdevelopment&scopeId=team_aBXmBAsOax74OQZNoVKLMWLU
+
+1. Click the link above
+2. Select "vercel-frontend" as root directory
+3. Add environment variables from Step 3
+4. Click Deploy
+
+────────────────────────────────────────────────────────────────────
+VERIFICATION AFTER DEPLOYMENT
+────────────────────────────────────────────────────────────────────
+
+# Check deployment status
+vercel ls --scope=team_aBXmBAsOax74OQZNoVKLMWLU
+
+# View deployment URL
+vercel inspect [deployment-url] --scope=team_aBXmBAsOax74OQZNoVKLMWLU
+
+# Check logs
+vercel logs --scope=team_aBXmBAsOax74OQZNoVKLMWLU
+
+════════════════════════════════════════════════════════════════════
+BACKEND STATUS: ✅ LIVE
+════════════════════════════════════════════════════════════════════
+
+Railway Backend: https://webdevelopment-production-023f.up.railway.app
+/CL Trading: ACTIVE
+Quantum Processing: 0.8677
+AI Consensus: 98.7%
+
+════════════════════════════════════════════════════════════════════

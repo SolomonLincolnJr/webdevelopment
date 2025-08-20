@@ -7,6 +7,7 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "outputDirectory": ".next",
+  "public": true,
   
   "regions": ["iad1"],
   
