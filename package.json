@@ -2,10 +2,11 @@
   "name": "psyberherd-apex-sniper",
   "version": "2.0.0",
   "description": "PSYBERHERD™ APEX Sniper Family Office Trading Platform with GenSpark.ai Integration",
-  "main": "psyberherd-apex-implementation.js",
+  "main": "trading-system-recovery.js",
   "scripts": {
-    "start": "node psyberherd-apex-implementation.js",
-    "start:production": "NODE_ENV=production node psyberherd-apex-implementation.js",
+    "start": "node trading-system-recovery.js",
+    "start:production": "NODE_ENV=production node trading-system-recovery.js",
+    "start:apex": "node psyberherd-apex-implementation.js",
     "dev": "nodemon psyberherd-apex-implementation.js",
     "monitor": "node monitoring-service.js",
     "build": "npm run build:prepare && npm run build:validate",
@@ -37,17 +38,20 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^1.11.0",
+    "compression": "^1.8.1",
     "cors": "^2.8.5",
+    "dd-trace": "^4.20.0",
     "dotenv": "^16.6.1",
     "express": "^4.18.2",
-    "ws": "^8.18.3",
-    "dd-trace": "^4.20.0",
-    "hot-shots": "^10.0.0"
+    "helmet": "^7.2.0",
+    "hot-shots": "^10.0.0",
+    "morgan": "^1.10.1",
+    "ws": "^8.18.3"
   },
   "devDependencies": {
+    "grunt": "^1.6.1",
     "nodemon": "^3.0.1",
-    "pm2": "^5.4.3",
-    "grunt": "^1.6.1"
+    "pm2": "^5.4.3"
   },
   "engines": {
     "node": ">=18.0.0"
