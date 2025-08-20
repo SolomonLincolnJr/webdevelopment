@@ -55,8 +55,8 @@ const nextConfig = {
   
   // Experimental features
   experimental: {
-    serverActions: true,
     optimizeCss: true,
+    webpackBuildWorker: true,
   },
 };
 
