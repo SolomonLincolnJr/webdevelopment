@@ -1,0 +1,40 @@
+{
+  "name": "psyberherd-apex-sniper",
+  "version": 2,
+  "builds": [
+    {
+      "src": "psyberherd-apex-implementation.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/health",
+      "dest": "/psyberherd-apex-implementation.js"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/psyberherd-apex-implementation.js"
+    },
+    {
+      "src": "/stream",
+      "dest": "/psyberherd-apex-implementation.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/psyberherd-apex-implementation.js"
+    }
+  ],
+  "env": {
+    "NODE_ENV": "production",
+    "PLATFORM_NAME": "PSYBERHERD™ APEX Sniper",
+    "PLATFORM_VERSION": "2.0.0"
+  },
+  "regions": ["iad1"],
+  "functions": {
+    "psyberherd-apex-implementation.js": {
+      "maxDuration": 30,
+      "memory": 1024
+    }
+  }
+}
