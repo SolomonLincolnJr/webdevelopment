@@ -1,13 +1,46 @@
 {
-  "name": "psyberherd-strategic-hub",
-  "version": "3.1.0",
-  "description": "PSYBERHERD Strategic Vision Hub V3.1",
-  "main": "server.js",
+  "name": "psyberherd-apex-sniper",
+  "version": "2.0.0",
+  "description": "PSYBERHERD™ APEX Sniper Family Office Trading Platform with GenSpark.ai Integration",
+  "main": "psyberherd-apex-implementation.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "node psyberherd-apex-implementation.js",
+    "start:production": "NODE_ENV=production node psyberherd-apex-implementation.js",
+    "dev": "nodemon psyberherd-apex-implementation.js",
+    "monitor": "node monitoring-service.js",
+    "build": "echo 'Build complete'",
+    "deploy:railway": "railway up",
+    "deploy:check": "curl -s https://webdevelopment-production-023f.up.railway.app/health | jq .",
+    "pm2:start": "pm2 start ecosystem.config.js",
+    "pm2:stop": "pm2 stop psyberherd-apex-sniper",
+    "pm2:restart": "pm2 restart psyberherd-apex-sniper",
+    "pm2:logs": "pm2 logs psyberherd-apex-sniper --nostream",
+    "pm2:monitor": "pm2 start monitoring-service.js --name psyberherd-monitor",
+    "pm2:status": "pm2 status",
+    "pm2:dashboard": "pm2 monit",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [
+    "trading",
+    "quantum",
+    "ai",
+    "genspark",
+    "family-office"
+  ],
+  "author": "Manus AI",
+  "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2"
+    "axios": "^1.11.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.6.1",
+    "express": "^4.18.2",
+    "ws": "^8.18.3",
+    "dd-trace": "^4.20.0",
+    "hot-shots": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1",
+    "pm2": "^5.4.3"
   },
   "engines": {
     "node": ">=18.0.0"

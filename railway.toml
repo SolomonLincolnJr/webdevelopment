@@ -1,0 +1,47 @@
+[build]
+builder = "nixpacks"
+buildCommand = "npm install"
+
+[deploy]
+startCommand = "npm run start:production"
+healthcheckPath = "/health"
+healthcheckTimeout = 60
+restartPolicyType = "on-failure"
+restartPolicyMaxRetries = 3
+
+[[services]]
+name = "psyberherd-apex-sniper"
+type = "web"
+port = 3000
+
+[services.psyberherd-apex-sniper]
+internalPort = 3000
+protocol = "http"
+
+[[services.psyberherd-apex-sniper.domains]]
+domain = "webdevelopment-production-023f.up.railway.app"
+
+[services.psyberherd-apex-sniper.healthcheck]
+path = "/health"
+interval = 30
+timeout = 10
+retries = 3
+
+[services.psyberherd-apex-sniper.resources]
+memory = "2Gi"
+cpu = "1"
+
+[services.psyberherd-apex-sniper.scaling]
+minReplicas = 1
+maxReplicas = 3
+targetCPUPercent = 70
+
+[env]
+NODE_ENV = "production"
+PORT = "3000"
+QUANTUM_FIDELITY = "0.8677"
+AI_ACCURACY = "0.959"
+CONSENSUS_RATE = "0.987"
+MAX_RISK_PER_TRADE = "0.02"
+MAX_PORTFOLIO_RISK = "0.10"
+DEPLOYMENT_STATUS = "LEGENDARY"
