@@ -5,40 +5,13 @@
     "buildCommand": "npm install"
   },
   "deploy": {
-    "startCommand": "node psyberherd-apex-implementation.js",
+    "startCommand": "npm run start:production",
+    "runtime": "V2",
+    "numReplicas": 1,
+    "sleepApplication": false,
     "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 3,
+    "restartPolicyMaxRetries": 10,
     "healthcheckPath": "/health",
-    "healthcheckTimeout": 60,
-    "region": "us-west1"
-  },
-  "services": [
-    {
-      "name": "psyberherd-apex-sniper",
-      "source": {
-        "repo": "https://github.com/SolomonLincolnJr/webdevelopment"
-      },
-      "domains": [
-        {
-          "domain": "webdevelopment-production-023f.up.railway.app"
-        }
-      ],
-      "env": {
-        "PORT": "$PORT",
-        "NODE_ENV": "production",
-        "FLASK_ENV": "production",
-        "FLASK_DEBUG": "false",
-        "PYTHONPATH": "/app",
-        "DD_SERVICE": "psyberherd-apex-sniper",
-        "DD_VERSION": "2.0.0",
-        "DD_ENV": "production",
-        "DD_LOGS_INJECTION": "true",
-        "DD_TRACE_ENABLED": "true",
-        "DD_PROFILING_ENABLED": "true",
-        "GENSPARK_MODE": "APEX_SNIPER",
-        "QUANTUM_FIDELITY_TARGET": "0.8677",
-        "AI_ACCURACY_TARGET": "0.985"
-      }
-    }
-  ]
+    "healthcheckTimeout": 60
+  }
 }

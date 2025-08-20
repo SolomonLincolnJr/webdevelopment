@@ -2,13 +2,13 @@
 nixPkgs = ["nodejs-18_x", "npm-9_x"]
 
 [phases.install]
-cmds = ["npm install"]
+cmds = ["npm ci --include=dev || npm install"]
 
 [phases.build]
-cmds = ["npm run build || echo 'No build script'"]
+cmds = ["npm run build"]
 
 [start]
-cmd = "node psyberherd-apex-implementation.js"
+cmd = "npm run start:production"
 
 [variables]
 NODE_ENV = "production"
