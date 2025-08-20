@@ -29,6 +29,7 @@ if (process.env.NODE_ENV === 'production') {
 const express = require('express');
 const WebSocket = require('ws');
 const EventEmitter = require('events');
+const apiRoutes = require('./api-routes');
 
 // ============================
 // GenSparkAI Command Prompt Interface
@@ -1080,6 +1081,9 @@ class PSYBERHERDAPIServer {
                 });
             }
         });
+        
+        // Mount comprehensive API routes including /CL trading
+        this.app.use(apiRoutes);
 
         // Get performance metrics
         this.app.get('/api/performance', (req, res) => {
