@@ -1,0 +1,157 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --apex-primary: #00ff9f;
+    --apex-secondary: #00ccff;
+    --apex-accent: #ff00ff;
+    --apex-dark: #0a0e27;
+    --apex-light: #1a1f3a;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-apex-dark text-white;
+    font-family: 'Rajdhani', system-ui, -apple-system, sans-serif;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', monospace;
+  }
+  
+  code, pre {
+    @apply font-mono;
+  }
+}
+
+@layer components {
+  .quantum-glow {
+    @apply relative;
+    &::before {
+      content: '';
+      @apply absolute inset-0 rounded-lg;
+      background: linear-gradient(45deg, var(--apex-primary), var(--apex-secondary));
+      opacity: 0.3;
+      filter: blur(20px);
+      animation: pulse 2s infinite;
+    }
+  }
+  
+  .apex-gradient {
+    background: linear-gradient(135deg, var(--apex-primary), var(--apex-secondary), var(--apex-accent));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  .card-apex {
+    @apply bg-apex-light/80 backdrop-blur-md rounded-lg border border-apex-primary/20;
+    @apply shadow-lg shadow-apex-primary/10;
+  }
+  
+  .btn-apex {
+    @apply px-4 py-2 rounded-lg font-semibold transition-all duration-200;
+    @apply bg-gradient-to-r from-apex-primary to-apex-secondary text-apex-dark;
+    @apply hover:shadow-lg hover:shadow-apex-primary/50 hover:scale-105;
+    @apply active:scale-95;
+  }
+  
+  .status-indicator {
+    @apply relative inline-block w-2 h-2 rounded-full;
+    &.active {
+      @apply bg-green-400;
+      animation: ping 2s infinite;
+    }
+    &.warning {
+      @apply bg-yellow-400;
+    }
+    &.error {
+      @apply bg-red-400;
+    }
+  }
+  
+  .metric-card {
+    @apply p-4 rounded-lg bg-gradient-to-br from-apex-light to-apex-dark;
+    @apply border border-apex-primary/30 shadow-md;
+    @apply hover:border-apex-primary/60 transition-all duration-300;
+  }
+  
+  .quantum-border {
+    position: relative;
+    &::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, var(--apex-primary), var(--apex-secondary), var(--apex-accent));
+      border-radius: inherit;
+      opacity: 0.5;
+      z-index: -1;
+      animation: rotate 4s linear infinite;
+    }
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px rgba(0, 255, 159, 0.5);
+  }
+  
+  .animate-matrix {
+    animation: matrixRain 2s linear infinite;
+  }
+  
+  @keyframes rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  @keyframes matrixRain {
+    0% {
+      transform: translateY(-100%);
+      opacity: 0;
+    }
+    10% {
+      opacity: 1;
+    }
+    90% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh);
+      opacity: 0;
+    }
+  }
+  
+  .scrollbar-apex {
+    scrollbar-width: thin;
+    scrollbar-color: var(--apex-primary) var(--apex-dark);
+  }
+  
+  .scrollbar-apex::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .scrollbar-apex::-webkit-scrollbar-track {
+    background: var(--apex-dark);
+  }
+  
+  .scrollbar-apex::-webkit-scrollbar-thumb {
+    background: var(--apex-primary);
+    border-radius: 4px;
+  }
+  
+  .scrollbar-apex::-webkit-scrollbar-thumb:hover {
+    background: var(--apex-secondary);
+  }
+}
