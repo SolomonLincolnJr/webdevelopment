@@ -1,6 +1,7 @@
 {
-  "name": "psyberherd-apex-frontend",
+  "name": "psyberherd-apex-sniper",
   "version": 2,
+  "scope": "team_aBXmBAsOax74OQZNoVKLMWLU",
   "framework": "nextjs",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
