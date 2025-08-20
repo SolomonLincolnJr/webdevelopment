@@ -1,0 +1,28 @@
+{
+  "providers": ["node"],
+  "buildPlan": {
+    "setup": {
+      "nixPkgs": ["nodejs-18_x", "npm-9_x"]
+    },
+    "install": {
+      "cmds": [
+        "npm ci --production=false || npm install",
+        "npm list || true"
+      ]
+    },
+    "build": {
+      "cmds": [
+        "npm run build",
+        "echo 'Build completed successfully'"
+      ]
+    }
+  },
+  "start": {
+    "cmd": "npm run start:production"
+  },
+  "variables": {
+    "NODE_ENV": "production",
+    "NPM_CONFIG_PRODUCTION": "false",
+    "NODE_OPTIONS": "--max-old-space-size=512"
+  }
+}
