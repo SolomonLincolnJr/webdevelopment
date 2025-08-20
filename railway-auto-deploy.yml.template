@@ -1,0 +1,54 @@
+name: Deploy to Railway Production
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: Deploy PSYBERHERD™ APEX Sniper
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+          
+      - name: Install Railway CLI
+        run: npm install -g @railway/cli
+        
+      - name: Deploy to Railway
+        env:
+          RAILWAY_TOKEN: ${{ secrets.RAILWAY_TOKEN }}
+        run: |
+          echo "🚀 Deploying PSYBERHERD™ APEX Sniper to Railway..."
+          echo "📦 Project: 2a8f8a3d-0572-44ef-b251-a3d9556ef003"
+          echo "🌍 Environment: e2f932dd-e370-42e3-86dd-8930a9290a1c"
+          
+          if [ -n "$RAILWAY_TOKEN" ]; then
+            railway login --token $RAILWAY_TOKEN
+            railway link 2a8f8a3d-0572-44ef-b251-a3d9556ef003
+            railway environment e2f932dd-e370-42e3-86dd-8930a9290a1c
+            railway up --detach
+            echo "✅ Deployment initiated successfully!"
+          else
+            echo "⚠️ RAILWAY_TOKEN not configured in GitHub Secrets"
+            echo "📝 Add RAILWAY_TOKEN to enable automatic deployment"
+            exit 0
+          fi
+          
+      - name: Deployment Summary
+        if: always()
+        run: |
+          echo "═══════════════════════════════════════════════"
+          echo "   PSYBERHERD™ APEX DEPLOYMENT SUMMARY"
+          echo "═══════════════════════════════════════════════"
+          echo "🎯 Platform: PSYBERHERD™ APEX Sniper"
+          echo "🚂 Railway Project: 2a8f8a3d-0572-44ef-b251-a3d9556ef003"
+          echo "🌍 Environment: Production"
+          echo "🔗 URL: https://webdevelopment-production-023f.up.railway.app/"
+          echo "═══════════════════════════════════════════════"
