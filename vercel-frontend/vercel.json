@@ -13,16 +13,16 @@
   
   "build": {
     "env": {
-      "NEXT_PUBLIC_API_URL": "@railway_backend_url",
-      "NEXT_PUBLIC_WS_URL": "@railway_ws_url",
+      "NEXT_PUBLIC_API_URL": "https://3002-imc9v77qaa3h8epi0x9w8-6532622b.e2b.dev",
+      "NEXT_PUBLIC_WS_URL": "wss://3002-imc9v77qaa3h8epi0x9w8-6532622b.e2b.dev",
       "NEXT_PUBLIC_ENVIRONMENT": "production"
     }
   },
   
   "env": {
-    "NEXT_PUBLIC_API_URL": "@railway_backend_url",
-    "NEXT_PUBLIC_WS_URL": "@railway_ws_url",
-    "NEXT_PUBLIC_ENVIRONMENT": "@vercel_environment"
+    "NEXT_PUBLIC_API_URL": "https://3002-imc9v77qaa3h8epi0x9w8-6532622b.e2b.dev",
+    "NEXT_PUBLIC_WS_URL": "wss://3002-imc9v77qaa3h8epi0x9w8-6532622b.e2b.dev",
+    "NEXT_PUBLIC_ENVIRONMENT": "production"
   },
   
   "headers": [
@@ -61,7 +61,7 @@
   "redirects": [
     {
       "source": "/backend",
-      "destination": "https://psyberherd-apex-sniper.up.railway.app",
+      "destination": "https://3002-imc9v77qaa3h8epi0x9w8-6532622b.e2b.dev",
       "permanent": false
     }
   ],
@@ -69,7 +69,7 @@
   "rewrites": [
     {
       "source": "/api/proxy/:path*",
-      "destination": "https://psyberherd-apex-sniper.up.railway.app/:path*"
+      "destination": "https://3002-imc9v77qaa3h8epi0x9w8-6532622b.e2b.dev/:path*"
     }
   ],
   
