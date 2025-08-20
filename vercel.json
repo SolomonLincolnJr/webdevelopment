@@ -36,5 +36,9 @@
       "maxDuration": 30,
       "memory": 1024
     }
-  }
+  },
+  "buildCommand": "npm install && npm run build",
+  "outputDirectory": ".",
+  "installCommand": "npm install",
+  "framework": null
 }
