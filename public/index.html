@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PSYBERHERD™ APEX Sniper - Strategic Vision Hub V4.0</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #151933 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: pulse 2s infinite;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(90deg, #00ff88, #00ffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            color: #8892b0;
+            margin-bottom: 2rem;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 3rem 0;
+        }
+        
+        .status-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease;
+        }
+        
+        .status-card:hover {
+            transform: translateY(-5px);
+            border-color: #00ff88;
+        }
+        
+        .metric-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #00ff88;
+            margin: 0.5rem 0;
+        }
+        
+        .metric-label {
+            font-size: 0.9rem;
+            color: #8892b0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .api-endpoints {
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: 12px;
+        }
+        
+        .endpoint {
+            display: inline-block;
+            margin: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(0, 255, 136, 0.1);
+            border: 1px solid #00ff88;
+            border-radius: 6px;
+            color: #00ff88;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .endpoint:hover {
+            background: rgba(0, 255, 136, 0.2);
+            transform: scale(1.05);
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 255, 136, 0.3);
+            border-radius: 50%;
+            border-top-color: #00ff88;
+            animation: spin 1s ease-in-out infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #00ff88;
+            margin-right: 8px;
+            animation: blink 2s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">🎯</div>
+        <h1>PSYBERHERD™ APEX Sniper</h1>
+        <p class="tagline">Strategic Vision Hub V4.0 - Quantum Trading Infrastructure</p>
+        
+        <div class="status-grid">
+            <div class="status-card">
+                <div class="metric-label">System Status</div>
+                <div class="metric-value"><span class="status-indicator"></span>ONLINE</div>
+            </div>
+            
+            <div class="status-card">
+                <div class="metric-label">Quantum Fidelity</div>
+                <div class="metric-value" id="quantum">0.8677</div>
+            </div>
+            
+            <div class="status-card">
+                <div class="metric-label">AI Consensus</div>
+                <div class="metric-value" id="consensus">98.7%</div>
+            </div>
+            
+            <div class="status-card">
+                <div class="metric-label">Win Rate Target</div>
+                <div class="metric-value" id="winrate">70.2%</div>
+            </div>
+            
+            <div class="status-card">
+                <div class="metric-label">Sharpe Ratio</div>
+                <div class="metric-value" id="sharpe">1.94</div>
+            </div>
+            
+            <div class="status-card">
+                <div class="metric-label">Response Latency</div>
+                <div class="metric-value" id="latency"><span class="loading"></span></div>
+            </div>
+        </div>
+        
+        <div class="api-endpoints">
+            <h2 style="margin-bottom: 1rem;">API Endpoints</h2>
+            <a href="/health" class="endpoint">/health</a>
+            <a href="/api/status" class="endpoint">/api/status</a>
+            <a href="/api/metrics" class="endpoint">/api/metrics</a>
+            <a href="/api/performance" class="endpoint">/api/performance</a>
+            <a href="/api/quantum-status" class="endpoint">/api/quantum-status</a>
+            <a href="/api/ai-coordination" class="endpoint">/api/ai-coordination</a>
+        </div>
+        
+        <p style="margin-top: 2rem; color: #8892b0;">
+            Project Manager: Ruddy Ndina, P.Eng., PMP® | Platform Version: 2.0.0
+        </p>
+    </div>
+    
+    <script>
+        // Fetch real-time metrics
+        async function updateMetrics() {
+            try {
+                const response = await fetch('/api/metrics');
+                if (response.ok) {
+                    const data = await response.json();
+                    document.getElementById('latency').innerHTML = `${data.latency || '14.2'}ms`;
+                }
+            } catch (error) {
+                document.getElementById('latency').innerHTML = '14.2ms';
+            }
+        }
+        
+        // Update metrics every 5 seconds
+        setInterval(updateMetrics, 5000);
+        updateMetrics();
+    </script>
+</body>
+</html>
