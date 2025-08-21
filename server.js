@@ -1114,13 +1114,18 @@ app.get('/health', (req, res) => {
   }
 });*/
 
-// Simple APEX Sniper Status Route
+// APEX Sniper Dashboard Route
 app.get('/apex-sniper', (req, res) => {
-  res.json({
-    status: 'APEX Sniper Dashboard',
-    message: 'APEX Sniper integration active',
-    timestamp: new Date().toISOString()
-  });
+  try {
+    res.sendFile(__dirname + '/apex-sniper-dashboard.html');
+  } catch (error) {
+    console.error('APEX Sniper Dashboard Error:', error);
+    res.status(500).json({ 
+      error: 'APEX Sniper Dashboard Error', 
+      message: error.message,
+      timestamp: new Date().toISOString() 
+    });
+  }
 });
 
 // Catch all other routes
