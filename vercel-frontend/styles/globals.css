@@ -1,157 +1,334 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* PSYBERHERD™ APEX Sniper - Global Styles */
+/* Optimized for Vercel deployment with vanilla CSS + CSS variables */
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&display=swap');
 
-@layer base {
-  :root {
-    --apex-primary: #00ff9f;
-    --apex-secondary: #00ccff;
-    --apex-accent: #ff00ff;
-    --apex-dark: #0a0e27;
-    --apex-light: #1a1f3a;
-  }
+/* CSS Reset and Base Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --apex-primary: #00ff9f;
+  --apex-secondary: #00ccff;
+  --apex-accent: #ff00ff;
+  --apex-dark: #0a0e27;
+  --apex-light: #1a1f3a;
   
-  * {
-    @apply border-border;
-  }
+  /* Additional color palette */
+  --quantum-green: #4ade80;
+  --quantum-yellow: #facc15;
+  --quantum-red: #f87171;
+  --quantum-blue: #60a5fa;
   
-  body {
-    @apply bg-apex-dark text-white;
-    font-family: 'Rajdhani', system-ui, -apple-system, sans-serif;
-  }
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
   
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Orbitron', monospace;
-  }
-  
-  code, pre {
-    @apply font-mono;
+  /* Borders */
+  --border-radius: 8px;
+  --border-radius-lg: 12px;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--apex-dark);
+  color: white;
+  font-family: 'Rajdhani', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', monospace;
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+h4 { font-size: 1.25rem; }
+
+code, pre {
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, 'Courier New', monospace;
+}
+
+a {
+  color: var(--apex-primary);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--apex-secondary);
+}
+
+/* Component Styles */
+.quantum-glow {
+  position: relative;
+}
+
+.quantum-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--border-radius-lg);
+  background: linear-gradient(45deg, var(--apex-primary), var(--apex-secondary));
+  opacity: 0.3;
+  filter: blur(20px);
+  animation: pulse 2s infinite;
+  z-index: -1;
+}
+
+.apex-gradient {
+  background: linear-gradient(135deg, var(--apex-primary), var(--apex-secondary), var(--apex-accent));
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.card-apex {
+  background-color: rgba(26, 31, 58, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(0, 255, 159, 0.2);
+  box-shadow: 0 10px 15px -3px rgba(0, 255, 159, 0.1);
+  padding: var(--space-4);
+  transition: all 0.3s ease;
+}
+
+.card-apex:hover {
+  border-color: rgba(0, 255, 159, 0.4);
+  box-shadow: 0 20px 25px -5px rgba(0, 255, 159, 0.2);
+}
+
+.btn-apex {
+  display: inline-block;
+  padding: var(--space-2) var(--space-4);
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  transition: all 200ms ease;
+  background: linear-gradient(to right, var(--apex-primary), var(--apex-secondary));
+  color: var(--apex-dark);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn-apex:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 255, 159, 0.5);
+  transform: scale(1.05);
+}
+
+.btn-apex:active {
+  transform: scale(0.95);
+}
+
+.status-indicator {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: var(--space-2);
+}
+
+.status-indicator.active {
+  background-color: var(--quantum-green);
+  animation: ping 2s infinite;
+}
+
+.status-indicator.warning {
+  background-color: var(--quantum-yellow);
+}
+
+.status-indicator.error {
+  background-color: var(--quantum-red);
+}
+
+.metric-card {
+  padding: var(--space-4);
+  border-radius: var(--border-radius);
+  background: linear-gradient(135deg, var(--apex-light), var(--apex-dark));
+  border: 1px solid rgba(0, 255, 159, 0.3);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 300ms ease;
+}
+
+.metric-card:hover {
+  border-color: rgba(0, 255, 159, 0.6);
+  transform: translateY(-2px);
+}
+
+.quantum-border {
+  position: relative;
+}
+
+.quantum-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, var(--apex-primary), var(--apex-secondary), var(--apex-accent));
+  border-radius: inherit;
+  opacity: 0.5;
+  z-index: -1;
+  animation: rotate 4s linear infinite;
+}
+
+/* Utility Classes */
+.text-shadow-glow {
+  text-shadow: 0 0 20px rgba(0, 255, 159, 0.5);
+}
+
+.animate-matrix {
+  animation: matrixRain 2s linear infinite;
+}
+
+.scrollbar-apex {
+  scrollbar-width: thin;
+  scrollbar-color: var(--apex-primary) var(--apex-dark);
+}
+
+.scrollbar-apex::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.scrollbar-apex::-webkit-scrollbar-track {
+  background: var(--apex-dark);
+}
+
+.scrollbar-apex::-webkit-scrollbar-thumb {
+  background: var(--apex-primary);
+  border-radius: 4px;
+}
+
+.scrollbar-apex::-webkit-scrollbar-thumb:hover {
+  background: var(--apex-secondary);
+}
+
+/* Responsive Grid System */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+@media (max-width: 768px) {
+  .grid-cols-2,
+  .grid-cols-3,
+  .grid-cols-4 {
+    grid-template-columns: 1fr;
   }
 }
 
-@layer components {
-  .quantum-glow {
-    @apply relative;
-    &::before {
-      content: '';
-      @apply absolute inset-0 rounded-lg;
-      background: linear-gradient(45deg, var(--apex-primary), var(--apex-secondary));
-      opacity: 0.3;
-      filter: blur(20px);
-      animation: pulse 2s infinite;
-    }
+/* Flexbox Utilities */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-4 { gap: var(--space-4); }
+
+/* Spacing Utilities */
+.p-4 { padding: var(--space-4); }
+.p-6 { padding: var(--space-6); }
+.m-4 { margin: var(--space-4); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mt-8 { margin-top: var(--space-8); }
+
+/* Text Utilities */
+.text-center { text-align: center; }
+.text-lg { font-size: 1.125rem; }
+.text-xl { font-size: 1.25rem; }
+.text-2xl { font-size: 1.5rem; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* Color Utilities */
+.text-primary { color: var(--apex-primary); }
+.text-secondary { color: var(--apex-secondary); }
+.text-accent { color: var(--apex-accent); }
+.bg-dark { background-color: var(--apex-dark); }
+.bg-light { background-color: var(--apex-light); }
+
+/* Border Utilities */
+.rounded { border-radius: var(--border-radius); }
+.rounded-lg { border-radius: var(--border-radius-lg); }
+.border { border: 1px solid rgba(255, 255, 255, 0.1); }
+
+/* Animations */
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-100%);
+    opacity: 0;
   }
-  
-  .apex-gradient {
-    background: linear-gradient(135deg, var(--apex-primary), var(--apex-secondary), var(--apex-accent));
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-  
-  .card-apex {
-    @apply bg-apex-light/80 backdrop-blur-md rounded-lg border border-apex-primary/20;
-    @apply shadow-lg shadow-apex-primary/10;
-  }
-  
-  .btn-apex {
-    @apply px-4 py-2 rounded-lg font-semibold transition-all duration-200;
-    @apply bg-gradient-to-r from-apex-primary to-apex-secondary text-apex-dark;
-    @apply hover:shadow-lg hover:shadow-apex-primary/50 hover:scale-105;
-    @apply active:scale-95;
-  }
-  
-  .status-indicator {
-    @apply relative inline-block w-2 h-2 rounded-full;
-    &.active {
-      @apply bg-green-400;
-      animation: ping 2s infinite;
-    }
-    &.warning {
-      @apply bg-yellow-400;
-    }
-    &.error {
-      @apply bg-red-400;
-    }
-  }
-  
-  .metric-card {
-    @apply p-4 rounded-lg bg-gradient-to-br from-apex-light to-apex-dark;
-    @apply border border-apex-primary/30 shadow-md;
-    @apply hover:border-apex-primary/60 transition-all duration-300;
-  }
-  
-  .quantum-border {
-    position: relative;
-    &::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, var(--apex-primary), var(--apex-secondary), var(--apex-accent));
-      border-radius: inherit;
-      opacity: 0.5;
-      z-index: -1;
-      animation: rotate 4s linear infinite;
-    }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
   }
 }
 
-@layer utilities {
-  .text-shadow-glow {
-    text-shadow: 0 0 20px rgba(0, 255, 159, 0.5);
+@keyframes ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
   }
-  
-  .animate-matrix {
-    animation: matrixRain 2s linear infinite;
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
   }
-  
-  @keyframes rotate {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  
-  @keyframes matrixRain {
-    0% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    10% {
-      opacity: 1;
-    }
-    90% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100vh);
-      opacity: 0;
-    }
-  }
-  
-  .scrollbar-apex {
-    scrollbar-width: thin;
-    scrollbar-color: var(--apex-primary) var(--apex-dark);
-  }
-  
-  .scrollbar-apex::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
-  }
-  
-  .scrollbar-apex::-webkit-scrollbar-track {
-    background: var(--apex-dark);
-  }
-  
-  .scrollbar-apex::-webkit-scrollbar-thumb {
-    background: var(--apex-primary);
-    border-radius: 4px;
-  }
-  
-  .scrollbar-apex::-webkit-scrollbar-thumb:hover {
-    background: var(--apex-secondary);
-  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+/* Loading States */
+.loading {
+  animation: pulse 2s infinite;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
 }
