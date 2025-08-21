@@ -56,6 +56,115 @@ module.exports = {
       }
     },
     {
+      name: 'lean-family-office',
+      script: './lean-apex-sniper-main.js',
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '1G',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 3003,
+        LEAN_MODE: true,
+        MONTHLY_BUDGET: 100,
+        PRIMARY_INSTRUMENT: 'NADEX_BINARY_OPTIONS',
+        COST_OPTIMIZATION: true
+      },
+      env_development: {
+        NODE_ENV: 'development',
+        PORT: 3003,
+        DEBUG: 'lean:*'
+      },
+      error_file: './logs/lean-error.log',
+      out_file: './logs/lean-output.log',
+      log_file: './logs/lean-combined.log',
+      time: true,
+      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+      merge_logs: true,
+      
+      // Lean optimization settings
+      min_uptime: '10s',
+      listen_timeout: 3000,
+      kill_timeout: 5000,
+      exec_mode: 'fork',
+      
+      // Cost-optimized monitoring
+      node_args: '--max-old-space-size=1024 --optimize-for-size'
+    },
+    {
+      name: 'premium-family-office',
+      script: './premium-family-office-server.js',
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '1G',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 3004,
+        PREMIUM_MODE: true,
+        NINJATRADER_INTEGRATION: true,
+        APEX_PLATINUM: true,
+        SCHWAB_API: true,
+        ANNUAL_VALUE_LEVERAGED: 5000
+      },
+      env_development: {
+        NODE_ENV: 'development',
+        PORT: 3004,
+        DEBUG: 'premium:*'
+      },
+      error_file: './logs/premium-error.log',
+      out_file: './logs/premium-output.log',
+      log_file: './logs/premium-combined.log',
+      time: true,
+      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+      merge_logs: true,
+      
+      // Premium integration settings
+      min_uptime: '10s',
+      listen_timeout: 3000,
+      kill_timeout: 5000,
+      exec_mode: 'fork',
+      
+      // Multi-platform optimization
+      node_args: '--max-old-space-size=1024 --optimize-for-size'
+    },
+    {
+      name: 'llm-load-balancer',
+      script: './llm-load-balancer-service.js',
+      instances: 1,
+      autorestart: true,
+      watch: false,
+      max_memory_restart: '512M',
+      env: {
+        NODE_ENV: 'production',
+        PORT: 3005,
+        LLM_ROUTING_MODE: 'cost-optimized',
+        DAILY_BUDGET_LIMIT: 10.00,
+        MANUS_AI_MAX_REQUESTS: 3,
+        LOCAL_LLAMA_PRIORITY: true
+      },
+      env_development: {
+        NODE_ENV: 'development',
+        PORT: 3005,
+        DEBUG: 'llm-router:*'
+      },
+      error_file: './logs/llm-router-error.log',
+      out_file: './logs/llm-router-output.log',
+      log_file: './logs/llm-router-combined.log',
+      time: true,
+      log_date_format: 'YYYY-MM-DD HH:mm:ss Z',
+      merge_logs: true,
+      
+      // LLM optimization settings
+      min_uptime: '10s',
+      listen_timeout: 3000,
+      kill_timeout: 5000,
+      exec_mode: 'fork',
+      
+      // Cost-optimized monitoring
+      node_args: '--max-old-space-size=512 --optimize-for-size'
+    },
+    {
       name: 'psyberherd-monitor',
       script: './monitoring-service.js',
       instances: 1,
@@ -64,7 +173,8 @@ module.exports = {
       env: {
         NODE_ENV: 'production',
         MONITOR_INTERVAL: 5000,
-        ALERT_THRESHOLD: 0.95
+        ALERT_THRESHOLD: 0.95,
+        LLM_COST_MONITORING: true
       }
     }
   ],
