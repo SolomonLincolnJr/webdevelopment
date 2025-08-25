@@ -582,6 +582,79 @@
             });
         }, 30000);
         
+        // Update LLM Load Balancer stats
+        async function updateLLMStats() {
+            try {
+                const response = await fetch('http://localhost:3005/api/llm/stats');
+                if (response.ok) {
+                    const data = await response.json();
+                    
+                    // Update daily cost
+                    const dailyCost = data.budget_status?.spent_today || 0;
+                    const dailyCostElement = document.getElementById('llm-daily-cost');
+                    if (dailyCostElement) {
+                        dailyCostElement.textContent = `$${dailyCost.toFixed(2)}`;
+                    }
+                    
+                    // Update budget status
+                    const utilization = data.budget_status?.utilization_percentage || 0;
+                    const status = utilization > 80 ? 'Budget Alert!' : utilization > 60 ? 'Budget Watch' : 'On Track';
+                    const budgetStatusElement = document.getElementById('llm-budget-status');
+                    if (budgetStatusElement) {
+                        budgetStatusElement.textContent = `${utilization}% used - ${status}`;
+                    }
+                    
+                    // Update distribution percentages
+                    const distribution = data.load_balancing?.distribution || {};
+                    const elementMap = {
+                        'local-llama-pct': 'local-llama',
+                        'genspark-pct': 'genspark-ai',
+                        'claude-pct': 'claude-sonnet',
+                        'abacus-pct': 'abacus-ai',
+                        'manus-pct': 'manus-ai',
+                        'manus-usage-pct': 'manus-ai'
+                    };
+                    
+                    Object.entries(elementMap).forEach(([elementId, provider]) => {
+                        const element = document.getElementById(elementId);
+                        if (element) {
+                            element.textContent = `${distribution[provider] || 0}%`;
+                        }
+                    });
+                    
+                    // Change colors based on Manus.ai usage
+                    const manusUsage = parseFloat(distribution['manus-ai'] || 0);
+                    const manusElement = document.getElementById('manus-pct');
+                    if (manusElement) {
+                        if (manusUsage > 5) {
+                            manusElement.style.color = '#ff4444';
+                        } else if (manusUsage > 2) {
+                            manusElement.style.color = '#ff9800';
+                        } else {
+                            manusElement.style.color = '#4CAF50';
+                        }
+                    }
+                    
+                } else {
+                    console.warn('Failed to fetch LLM stats');
+                    const budgetStatusElement = document.getElementById('llm-budget-status');
+                    if (budgetStatusElement) {
+                        budgetStatusElement.textContent = 'Service Unavailable';
+                    }
+                }
+            } catch (error) {
+                console.warn('LLM Load Balancer not running:', error.message);
+                const budgetStatusElement = document.getElementById('llm-budget-status');
+                if (budgetStatusElement) {
+                    budgetStatusElement.textContent = 'Service Offline';
+                }
+            }
+        }
+        
+        // Initial load and periodic refresh of LLM stats
+        updateLLMStats();
+        setInterval(updateLLMStats, 10000); // Update every 10 seconds
+        
         // Add click handlers for API links to track usage
         document.querySelectorAll('.api-link').forEach(link => {
             link.addEventListener('click', function(e) {
